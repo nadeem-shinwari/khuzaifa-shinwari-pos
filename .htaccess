@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Khuzaifa Shinwari - Apache configuration for the project folder.
 # Routes /api/* to the PHP front controller while keeping /api/v1/... clean URLs.
 
@@ -19,3 +20,26 @@ RewriteRule ^api/(.*)$ backend/api/index.php/$1 [L,QSA]
     RewriteRule ^backend/src/ - [F,L]
     RewriteRule ^backend/config/ - [F,L]
 </IfModule>
+=======
+# Khuzaifa Shinwari - Apache configuration for the project folder.
+# Routes /api/* to the PHP front controller while keeping /api/v1/... clean URLs.
+
+RewriteEngine On
+RewriteBase /khuzaifa-shinwari/
+
+# Forward every /api request to the PHP front controller, preserving the
+# trailing path as PATH_INFO so the router sees "v1/system/health".
+RewriteRule ^api/(.*)$ backend/api/index.php/$1 [L,QSA]
+
+# Never expose secrets, configuration, logs, database files or PHP sources.
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteRule ^backend/storage/ - [F,L]
+    RewriteRule ^backend/migrations/ - [F,L]
+    RewriteRule ^backend/src/ - [F,L]
+    RewriteRule ^backend/config/ - [F,L]
+</IfModule>
+>>>>>>> e9379fc5bb59ce429f96f5c3aadadcb43818b476
