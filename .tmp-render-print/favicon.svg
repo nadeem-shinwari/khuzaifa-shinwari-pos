@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Khuzaifa Shinwari">
+  <rect width="64" height="64" rx="14" fill="#2547eb" />
+  <text
+    x="32"
+    y="43"
+    font-family="ui-sans-serif, system-ui, 'Segoe UI', Roboto, Arial, sans-serif"
+    font-size="27"
+    font-weight="700"
+    fill="#ffffff"
+    text-anchor="middle"
+    letter-spacing="0.5"
+  >KS</text>
+</svg>

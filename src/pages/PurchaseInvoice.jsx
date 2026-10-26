@@ -48,7 +48,7 @@ export function PurchaseInvoice() {
     <div className="space-y-4">
       <div className="no-print flex items-center justify-between">
         <Button type="button" variant="secondary" size="sm" onClick={() => navigate('/purchases')}>Back to purchases</Button>
-        <Button type="button" onClick={() => window.print()}>Print invoice</Button>
+        <Button type="button" onClick={() => navigate(`/purchases/${id}/print`)}>Print invoice</Button>
       </div>
       {error && <Alert variant="error" title="Unable to load purchase">{error}</Alert>}
       {loading ? <LoadingState label="Loading purchase..." /> : !row ? <EmptyState title="Purchase not found" description="The requested purchase could not be loaded." /> : (

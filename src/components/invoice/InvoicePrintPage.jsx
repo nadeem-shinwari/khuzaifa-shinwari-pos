@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiGet } from '../../services/api';
-import { formatCurrency, formatDate } from '../../utils/format';
+import { formatDate } from '../../utils/format';
 import { Button } from '../../components/ui/Button';
 import { Alert, LoadingState } from '../../components/ui/Alert';
 import InvoiceHeader from './InvoiceHeader';

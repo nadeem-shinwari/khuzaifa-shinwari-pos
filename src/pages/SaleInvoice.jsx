@@ -48,7 +48,7 @@ export function SaleInvoice() {
     <div className="space-y-4">
       <div className="no-print flex items-center justify-between">
         <Button type="button" variant="secondary" size="sm" onClick={() => navigate('/sales')}>Back to sales</Button>
-        <Button type="button" onClick={() => window.print()}>Print invoice</Button>
+        <Button type="button" onClick={() => navigate(`/sales/${id}/print`)}>Print invoice</Button>
       </div>
       {error && <Alert variant="error" title="Unable to load sale">{error}</Alert>}
       {loading ? <LoadingState label="Loading sale..." /> : !row ? <EmptyState title="Sale not found" description="The requested sale could not be loaded." /> : (
