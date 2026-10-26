@@ -1,0 +1,37 @@
+{
+  "name": "khuzaifa-shinwari",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "check:render": "vite build --ssr scripts/render-check.jsx --outDir .tmp-render-check && node .tmp-render-check/render-check.js",
+    "check:api": "node scripts/api-contract-check.mjs",
+    "check:client": "node scripts/client-check.mjs",
+    "check:css": "node scripts/css-coverage-check.mjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.2",
+    "lucide-react": "^1.61.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.90.0",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4"
+  }
+}
