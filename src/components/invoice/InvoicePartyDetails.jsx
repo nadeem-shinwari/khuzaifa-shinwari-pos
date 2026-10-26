@@ -52,8 +52,12 @@ export default function InvoicePartyDetails({ type, party, invoice }) {
           <tr key={ri}>
             {row.map((cell, ci) => (
               <td key={ci} className={cell.label ? 'label' : 'value'}>
-                {cell.label && <span className="label-text">{cell.label}:</span>}
-                {cell.value !== '' ? <span className="value-text">{cell.value}</span> : null}
+                {cell.value !== '' && (
+                  <>
+                    {cell.label && <span className="label-text">{cell.label}:</span>}
+                    <span className="value-text">{cell.value}</span>
+                  </>
+                )}
               </td>
             ))}
           </tr>
