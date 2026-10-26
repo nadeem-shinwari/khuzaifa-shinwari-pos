@@ -1,0 +1,279 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Brand */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-200: #bfd3fe;
+  --color-brand-300: #93b4fd;
+  --color-brand-400: #608cfa;
+  --color-brand-500: #3b66f6;
+  --color-brand-600: #2547eb;
+  --color-brand-700: #1d35d8;
+  --color-brand-800: #1e2eaf;
+  --color-brand-900: #1e2c8a;
+  --color-brand-950: #171b54;
+
+  /* Restrained teal used for invoice borders (legible in grayscale too) */
+  --color-teal-50: #eef6f6;
+  --color-teal-100: #cde7e8;
+  --color-teal-200: #a5cfd0;
+  --color-teal-400: #5fa8a8;
+  --color-teal-600: #2a7f7f;
+  --color-teal-700: #216666;
+
+  /* Neutral "ink" palette */
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eceef2;
+  --color-ink-200: #d5d9e2;
+  --color-ink-300: #b1b8c8;
+  --color-ink-400: #8690a6;
+  --color-ink-500: #67718a;
+  --color-ink-600: #525a71;
+  --color-ink-700: #43495c;
+  --color-ink-800: #3a3f4e;
+  --color-ink-900: #343843;
+  --color-ink-950: #22252d;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-50 text-ink-900 antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+@layer components {
+  .card-shadow {
+    box-shadow:
+      0 1px 2px 0 rgb(16 24 40 / 0.04),
+      0 1px 3px 0 rgb(16 24 40 / 0.06);
+  }
+}
+
+@media print {
+  aside, header, footer, .no-print, .print-hide { display: none !important; }
+  body { background: #fff; color: #000; }
+  main { padding: 0 !important; display: block; }
+  .shadow-sm, .shadow { box-shadow: none !important; }
+  /* Browser print headers/footers (date, URL, page numbers) are controlled by
+     the print dialog, not by page CSS. Tell users to disable them there. */
+}
+
+/* ==========================================================================
+   Invoice print layout (A4). These styles apply to the dedicated print views
+   and are optimised for paper / "Save as PDF". They are also safe on screen.
+   ========================================================================== */
+.invoice-page {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #1a1a1a;
+  font-size: 9pt;
+  line-height: 1.35;
+}
+.invoice-page * { box-sizing: border-box; }
+
+.invoice-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+.invoice-company {
+  font-size: 17pt;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.invoice-slogan {
+  font-size: 8pt;
+  color: #444;
+}
+.invoice-separator {
+  border: none;
+  border-top: 1px solid #2a7f7f;
+  margin: 6px 0 4px;
+}
+.invoice-contact {
+  font-size: 7.6pt;
+  color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.invoice-contact span {
+  white-space: nowrap;
+}
+
+.invoice-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.invoice-title {
+  font-size: 12.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.invoice-meta {
+  font-size: 8pt;
+  color: #444;
+  text-align: right;
+}
+
+/* Bordered party / invoice info table */
+.invoice-party-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+.invoice-party-table td {
+  border: 0.75pt solid #2a7f7f;
+  padding: 4px 6px;
+  font-size: 7.8pt;
+  vertical-align: top;
+}
+.invoice-party-table .label {
+  font-weight: 700;
+  background: #eef6f6;
+  color: #216666;
+  width: 21%;
+}
+.invoice-party-table .value { width: 29%; }
+
+/* Itemized table */
+.invoice-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+  font-size: 7.8pt;
+}
+.invoice-items th {
+  border: 0.75pt solid #2a7f7f;
+  border-bottom: 1.2pt solid #2a7f7f;
+  background: #eef6f6;
+  color: #216666;
+  font-weight: 700;
+  text-align: left;
+  padding: 4px 6px;
+  font-size: 7.4pt;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.invoice-items td {
+  border: 0.75pt solid #2a7f7f;
+  padding: 4px 6px;
+  vertical-align: top;
+}
+.invoice-items td.qty, .invoice-items td.rate, .invoice-items td.amount {
+  text-align: right;
+}
+.invoice-items td.serial { text-align: center; }
+.invoice-items tfoot td {
+  border: 0.75pt solid #2a7f7f;
+  border-top: 1.2pt solid #216666;
+  background: #eef6f6;
+  font-weight: 700;
+  padding: 5px 6px;
+}
+.invoice-items tfoot .amount-cell { text-align: right; }
+
+.invoice-break { page-break-inside: avoid; }
+
+.invoice-amount-in-words {
+  margin-top: 8px;
+  font-size: 8pt;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.invoice-amount-in-words .label {
+  color: #216666;
+  margin-right: 4px;
+}
+
+.invoice-footer {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 7.8pt;
+  color: #333;
+}
+.invoice-terms {
+  flex: 1;
+  font-size: 7.6pt;
+}
+.invoice-terms .terms-title {
+  font-weight: 800;
+  font-size: 8pt;
+  color: #216666;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.invoice-terms ul {
+  margin: 0 0 0 16px;
+  padding: 0;
+}
+.invoice-terms li {
+  margin-bottom: 2px;
+  text-align: left;
+}
+.invoice-signature {
+  text-align: right;
+}
+.invoice-signature .sig-label {
+  font-weight: 800;
+  color: #216666;
+  margin-bottom: 26px;
+  text-align: right;
+}
+.invoice-signature .sig-line {
+  border-top: 1pt solid #216666;
+  width: 170px;
+  margin: 0 auto 6px;
+  padding-top: 3px;
+  font-size: 7.2pt;
+  color: #444;
+}
+.invoice-signature .sig-name {
+  font-weight: 700;
+  text-align: right;
+}
+.invoice-footer-note {
+  font-size: 7.2pt;
+  color: #555;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Ensure table headers repeat when the invoice spans multiple printed pages. */
+.invoice-items thead { display: table-header-group; }
+.invoice-items tr { page-break-inside: avoid; }
+.invoice-items tfoot { display: table-footer-group; }
+
+@page {
+  size: A4 portrait;
+  margin: 14mm 12mm 16mm 12mm;
+}
+
+@media screen {
+  .invoice-page { padding: 16px; background: #fff; }
+  .invoice-print-bar {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+}
+
+
